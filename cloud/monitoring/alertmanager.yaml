@@ -1,0 +1,16 @@
+global:
+  slack_api_url: 'https://hooks.slack.com/services/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'
+route:
+  group_by: ['alertname']
+  group_wait: 5s
+  group_interval: 1m
+  repeat_interval: 10m
+  receiver: 'slack'
+
+receivers:
+- name: 'slack'
+  slack_configs:
+  - channel: '#webhook-tests-vali'
+    icon_emoji: ':bell:'
+    send_resolved: true
+    text: "<!channel> \nsummary: {{ .CommonAnnotations.message }}\n"
